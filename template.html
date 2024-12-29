@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Website</title>
+    <link rel="stylesheet" href="./style.css">
+    <title>Invoice</title>
 </head>
 <body>
   <div class="box">
 
     <div class="imgdiv">
-      <img src="python_dark.png" alt="logo" srcset="">
+      <img src="D:\Projects\Python Projects\PDF Editor\Logo.png" alt="logo">
     </div>
 
     <div class="invoice">
       <h1>INVOICE</h1>
       <div class="invoiceDetail">
-        <p>Date: 29-12-2024</p>
+        <p>Date: {{date}}</p>
         <p>Invoice No.: 10023</p>
       </div>
     </div>
@@ -35,7 +35,7 @@
           <h3>To:</h3>
           <p>Name: Idea Workshop</p>
           <p>GSTIN: <u>06AAMPP9750AIZL</u></p>
-          <P>Address: B-200,GOURND FLOOR, SUSHANTLOKPHASE-1, GURUGRAM-122001, HARYANA</P>
+          <P>Address: B-200, GROUND FLOOR, SUSHANTLOK PHASE-1, GURUGRAM-122001, HARYANA</P>
         </div>
       </div>
       <div class="otherInfo">
@@ -86,15 +86,13 @@
           <td></td>
         </tr>
         <tr>
-          <td class="roundOff">Total(Round Off): <br>
-          Sixteen thosand two hundered fifty four only</td>
+          <td class="roundOff">Total (Round Off): <br> Sixteen thousand two hundred fifty-four only</td>
           <td>16254</td>
         </tr>
       </table>
     </div>
 
     <div class="container">
-      <!-- ...existing code... -->
       <footer class="sign">
         <div></div>
         <div class="authorized">

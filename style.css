@@ -1,91 +1,128 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
-body{
-    margin: 0px;
-    padding: 0px;
-    font-family: 'Work Sans';
+/* Global styles */
+body {
+    font-family: 'Work Sans', sans-serif;
+    margin: 0;
+    padding: 0;
 }
-p{
-    margin: 0px;
-    
+
+p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
 }
-h1,h2,h3,h4,h5,h6{
-    margin: 0px;
-}
-.box{
+
+.box {
     margin: 0.5rem;
     padding: 0.5rem;
-    border: solid 1px black;
-    height: 1920px;
-    width: 1080px;
+    border: 1px solid black;
 }
 
 .imgdiv {
     margin-top: 15px;
-    img{
-        height: 3rem;
-    }
 }
 
-.invoice{
-    display: flex;
-    justify-content: space-between;
+.imgdiv img {
+    height: 3rem;
+}
+
+.invoice {
     margin-top: 1rem;
-    .invoiceDetail{
-        margin-top: 7px;
-        p{
-            font-size: 19px;
-        }
-    }
-    h1{
-        font-weight: 700;
-        font-size: 3rem;
-    }
+    display: table;
+    width: 100%;
 }
 
-.details{
+.invoice h1 {
+    font-weight: 700;
+    font-size: 3rem;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.invoiceDetail {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+}
+
+.invoiceDetail p {
+    font-size: 19px;
+}
+
+.details {
     margin-top: 2rem;
-    display: flex;
-    justify-content: space-between;
-    .fromTo{
-        width: 30rem;
-    }
-    .otherInfo{
-        width: 15rem;
-    }
+    display: table;
+    width: 100%;
 }
 
-.tableInfo{
+.fromTo {
+    display: table-cell;
+    width: 70%;
+    vertical-align: top;
+}
+
+.otherInfo {
+    display: table-cell;
+    width: 30%;
+    vertical-align: top;
+}
+
+.tableInfo {
     width: 100%;
     text-align: left;
     margin-top: 3rem;
-}
-table{
     border-collapse: collapse;
 }
-tr{
-    border-bottom: 1px solid;
+
+.tableInfo th, .tableInfo td {
+    border: 1px solid black;
+    padding: 8px;
 }
 
-.Amount{
+.Amount {
     margin-top: 1rem;
-    display: flex;
-    justify-content: space-between;
+    display: table;
+    width: 100%;
 }
-.roundOff{
-    width: 15rem;
+
+.bankDetail {
+    display: table-cell;
+    width: 60%;
+    vertical-align: top;
 }
-.container{
-    height: 100%;
+
+.bankDetail p {
+    margin-bottom: 5px;
+}
+
+.Total {
+    display: table-cell;
+    width: 40%;
+    vertical-align: top;
+    text-align: right;
+}
+
+.Total td {
+    padding: 8px;
+    border: none;
+}
+
+.roundOff {
+    width: 100%;
+    word-wrap: break-word;
 }
 
 .sign {
-    margin-top: 100%;
-    margin-right: 10%;
+    margin-top: 50px;
     display: flex;
-    justify-content: space-between;
-    p{
-        font-size: 20px;
-    }
+    justify-content: flex-end;
+    align-items: center;
 }
-  
+
+.sign .authorized {
+    text-align: center;
+}
+
+.sign .authorized hr {
+    margin: 5px auto;
+    width: 50%;
+}

@@ -1,20 +1,32 @@
 import jinja2
-import pdfkit
 from datetime import datetime
+import pdfkit
 
-# my_name = "Shaurya Srivastava"
-# item1 = "TV"
-# item2 = "Couch"
-# item3 = "Washing machine"
-# today_date = datetime.today().strftime("%d %b, %Y")
-# context = {'my_name': my_name,'item1':item1,'item2':item2,'item3':item3,
-#             'today_date':today_date,}
+# Step 1: Prepare the context for Jinja2
+today_date = datetime.today().strftime("%d %b, %Y")
+context = {'date': today_date}
 
+# Step 2: Load and render the template
 template_loader = jinja2.FileSystemLoader('./')
-template_emv = jinja2.Environment(loader=template_loader)
+template_env = jinja2.Environment(loader=template_loader)
 
-template = template_emv.get_template('basic_template.html')
-output_text = template.render()
+try:
+    template = template_env.get_template('template.html')
+    output_text = template.render(context)
+except jinja2.TemplateNotFound:
+    print("Template not found. Please ensure 'template.html' exists in the current directory.")
+    exit(1)
+except jinja2.TemplateError as e:
+    print(f"An error occurred while rendering the template: {e}")
+    exit(1)
 
-config = pdfkit.configuration(wkhtmltopdf=r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe")
-pdfkit.from_string(output_text, 'pdf_generated.pdf', configuration=config,css="style.css")
+# Step 3: Convert the rendered HTML to PDF
+path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
+config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
+
+try:
+    pdfkit.from_string(output_text, "sample.pdf", configuration=config,css="style.css",options= {'enable-local-file-access': None})
+    print("PDF generated successfully.")
+except OSError as e:
+    print(f"An error occurred while generating the PDF: {e}")
+    exit(1)
