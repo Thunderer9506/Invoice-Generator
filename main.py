@@ -1,11 +1,12 @@
 import os
 import subprocess
-from datetime import datetime
+import shutil
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import messagebox
 from tkinter import ttk
 import docx
+import num2words
 
 class InvoiceAutomation:
     def __init__(self):
@@ -165,21 +166,32 @@ class InvoiceAutomation:
         return sum
     
     def igst(self, amount):
-        return amount * 0.18
+        return float("%.2f"%(amount * 0.18))
 
     def cgst(self, amount):
-        return amount * 0.09
+        return float("%.2f"%(amount * 0.09))
 
     def sgst(self, amount):
-        return amount * 0.09
-    
+        return float("%.2f"%(amount * 0.09))
+
+    def total_in_words(self, total):
+        rounded_total = round(total)
+        total_words = num2words.num2words(rounded_total).title()
+        if total == rounded_total:
+            return f"Total (Round Off):\n {total_words} Only"
+        else:
+            return f"Total:\n {total_words} Only"
+
     def create_invoice(self):
         doc = docx.Document("template.docx")
+
         subtotal = self.subtotal()
         igst = self.igst(subtotal) if self.igst_var.get() else 0
         sgst = self.sgst(subtotal) if self.sgst_var.get() else 0
         cgst = self.cgst(subtotal) if self.cgst_var.get() else 0
         total = subtotal + igst + sgst + cgst
+        total = "%.2f" % total
+        
         try:
             replacements = {
                 "[Date]": self.date_entry.get(),
@@ -213,7 +225,8 @@ class InvoiceAutomation:
                 "[IGST]":str(igst),
                 "[SGST]":str(sgst),
                 "[CGST]":str(cgst),
-                "[Total]":str(total)
+                "[Total]":str(total),
+                "[amountInword]":self.total_in_words(float(total)),
             }
         except ValueError:
             messagebox.showerror(title='Error',message="Invalid amount or price")
@@ -232,14 +245,17 @@ class InvoiceAutomation:
         save_path = filedialog.asksaveasfilename(defaultextension=".pdf",filetypes=[('PDF documents','*.pdf')])
         doc.save('filled.docx')
 
+
         try:
             subprocess.run(args=[r'C:\Libre Office\program\soffice.exe', '--headless', '--convert-to', 'pdf', 'filled.docx', '--outdir', '.'], check=True)
-            os.rename(src="filled.pdf", dst=save_path)
+            shutil.move(src=f"Bill_{self.invoice_entry.get()}.pdf", dst=save_path)
             messagebox.showinfo(title="success", message="Invoice created and saved successfully")
         except subprocess.CalledProcessError as e:
             messagebox.showerror(title="Error", message=f"Failed to convert DOCX to PDF: {e}")
         except PermissionError as e:
             messagebox.showerror(title="Error", message=f"Permission denied: {e}")
+        except OSError as e:
+            messagebox.showerror(title="Error", message=f"Failed to move the file: {e}")
 
 
 if __name__ == "__main__":
