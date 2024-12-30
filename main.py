@@ -154,17 +154,66 @@ class InvoiceAutomation:
     def replace_text(paragraph, old_text, new_text):
         if old_text in paragraph.text:
             paragraph.text = paragraph.text.replace(old_text,new_text)
+    
+    def subtotal(self):
+        Amount1 = float(self.amount1_entry.get()) if self.amount1_entry.get() else 0
+        Amount2 = float(self.amount2_entry.get()) if self.amount2_entry.get() else 0
+        Amount3 = float(self.amount3_entry.get()) if self.amount3_entry.get() else 0
+        Amount4 = float(self.amount4_entry.get()) if self.amount4_entry.get() else 0
+        Amount5 = float(self.amount5_entry.get()) if self.amount5_entry.get() else 0
+        sum = Amount1 + Amount2 + Amount3 + Amount4 + Amount5
+        return sum
+    
+    def igst(self, amount):
+        return amount * 0.18
 
+    def cgst(self, amount):
+        return amount * 0.09
+
+    def sgst(self, amount):
+        return amount * 0.09
+    
     def create_invoice(self):
         doc = docx.Document("template.docx")
+        subtotal = self.subtotal()
+        igst = self.igst(subtotal) if self.igst_var.get() else 0
+        sgst = self.sgst(subtotal) if self.sgst_var.get() else 0
+        cgst = self.cgst(subtotal) if self.cgst_var.get() else 0
+        total = subtotal + igst + sgst + cgst
         try:
             replacements = {
                 "[Date]": self.date_entry.get(),
                 "[Invoice]": self.invoice_entry.get(),
 
-                "[clientName]" : self.clientName_entry.get().title(),
-                "[clientAddress]" : self.clientAddress_entry.get(),
-                "[clientGST]" : self.clientGST_entry.get(),
+                "[clientName]": self.clientName_entry.get().title(),
+                "[clientAddress]": self.clientAddress_entry.get(),
+                "[clientGST]": self.clientGST_entry.get(),
+
+                "[Description1]": self.description1_entry.get() if self.description1_entry.get() else "",
+                "[Description2]": self.description2_entry.get() if self.description2_entry.get() else "",
+                "[Description3]": self.description3_entry.get() if self.description3_entry.get() else "",
+                "[Description4]": self.description4_entry.get() if self.description4_entry.get() else "",
+                "[Description5]": self.description5_entry.get() if self.description5_entry.get() else "",
+                "[Rate1]": self.rate1_entry.get() if self.rate1_entry.get() else "",
+                "[Rate2]": self.rate2_entry.get() if self.rate2_entry.get() else "",
+                "[Rate3]": self.rate3_entry.get() if self.rate3_entry.get() else "",
+                "[Rate4]": self.rate4_entry.get() if self.rate4_entry.get() else "",
+                "[Rate5]": self.rate5_entry.get() if self.rate5_entry.get() else "",
+                "[Quantity1]": self.quantity1_entry.get() if self.quantity1_entry.get() else "",
+                "[Quantity2]": self.quantity2_entry.get() if self.quantity2_entry.get() else "",
+                "[Quantity3]": self.quantity3_entry.get() if self.quantity3_entry.get() else "",
+                "[Quantity4]": self.quantity4_entry.get() if self.quantity4_entry.get() else "",
+                "[Quantity5]": self.quantity5_entry.get() if self.quantity5_entry.get() else "",
+                "[Amount1]": self.amount1_entry.get() if self.amount1_entry.get() else "",
+                "[Amount2]": self.amount2_entry.get() if self.amount2_entry.get() else "",
+                "[Amount3]": self.amount3_entry.get() if self.amount3_entry.get() else "",
+                "[Amount4]": self.amount4_entry.get() if self.amount4_entry.get() else "",
+                "[Amount5]": self.amount5_entry.get() if self.amount5_entry.get() else "",
+                "[subTotal]": str(subtotal),
+                "[IGST]":str(igst),
+                "[SGST]":str(sgst),
+                "[CGST]":str(cgst),
+                "[Total]":str(total)
             }
         except ValueError:
             messagebox.showerror(title='Error',message="Invalid amount or price")
