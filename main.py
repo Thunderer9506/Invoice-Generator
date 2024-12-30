@@ -49,3 +49,51 @@ class InvoiceAutomation:
         self.cgst_label = tk.Label(self.root, text="CGST")
         self.total_label = tk.Label(self.root, text="Total")
         self.totalInword_label = tk.Label(self.root, text="Total In Word")
+
+        #Create entry widget for every label 
+        self.date_entry = tk.Entry(self.root)
+        self.invoice_entry = tk.Entry(self.root)
+
+        self.clientName_entry = tk.Entry(self.root)
+        self.clientAddress_entry = tk.Entry(self.root)
+        self.clientGST_entry = tk.Entry(self.root)
+
+        self.description1_entry = tk.Entry(self.root)
+        self.description2_entry = tk.Entry(self.root)
+        self.description3_entry = tk.Entry(self.root)
+        self.description4_entry = tk.Entry(self.root)
+        self.description5_entry = tk.Entry(self.root)
+
+        self.quantity1_entry = tk.Entry(self.root)
+        self.quantity2_entry = tk.Entry(self.root)
+        self.quantity3_entry = tk.Entry(self.root)
+        self.quantity4_entry = tk.Entry(self.root)
+        self.quantity5_entry = tk.Entry(self.root)
+
+        self.rate1_entry = tk.Entry(self.root)
+        self.rate2_entry = tk.Entry(self.root)
+        self.rate3_entry = tk.Entry(self.root)
+        self.rate4_entry = tk.Entry(self.root)
+        self.rate5_entry = tk.Entry(self.root)
+
+        self.amount1_entry = tk.Entry(self.root)
+        self.amount2_entry = tk.Entry(self.root)
+        self.amount3_entry = tk.Entry(self.root)
+        self.amount4_entry = tk.Entry(self.root)
+        self.amount5_entry = tk.Entry(self.root)
+
+        self.subtotal_entry = tk.Entry(self.root)
+        self.igst_entry = tk.Entry(self.root)
+        self.sgst_entry = tk.Entry(self.root)
+        self.cgst_entry = tk.Entry(self.root)
+        self.total_entry = tk.Entry(self.root)
+        self.totalInword_entry = tk.Entry(self.root)
+
+        self.create_Button = tk.Button(self.root, text="Create Invoice", command=self.create_invoice)
+
+        padding_options = {'fill': 'x', 'expand':True, 'padx': 5, 'pady': 5} 
+
+        #Now pack every widget
+
+    def create_invoice(self):
+        pass
