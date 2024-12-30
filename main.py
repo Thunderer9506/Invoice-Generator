@@ -93,7 +93,102 @@ class InvoiceAutomation:
 
         padding_options = {'fill': 'x', 'expand':True, 'padx': 5, 'pady': 5} 
 
-        #Now pack every widget
+        # Now pack every widget
+        self.date_label.pack(padding_options)
+        self.date_entry.pack(padding_options)
+        
+        self.invoice_label.pack(padding_options)
+        self.invoice_entry.pack(padding_options)
+        
+        self.clientName_label.pack(padding_options)
+        self.clientName_entry.pack(padding_options)
+        
+        self.clientAddress_label.pack(padding_options)
+        self.clientAddress_entry.pack(padding_options)
+        
+        self.clientGST_label.pack(padding_options)
+        self.clientGST_entry.pack(padding_options)
+        
+        self.description1_label.pack(padding_options)
+        self.description1_entry.pack(padding_options)
+        
+        self.description2_label.pack(padding_options)
+        self.description2_entry.pack(padding_options)
+        
+        self.description3_label.pack(padding_options)
+        self.description3_entry.pack(padding_options)
+        
+        self.description4_label.pack(padding_options)
+        self.description4_entry.pack(padding_options)
+        
+        self.description5_label.pack(padding_options)
+        self.description5_entry.pack(padding_options)
+        
+        self.quantity1_label.pack(padding_options)
+        self.quantity1_entry.pack(padding_options)
+        
+        self.quantity2_label.pack(padding_options)
+        self.quantity2_entry.pack(padding_options)
+        
+        self.quantity3_label.pack(padding_options)
+        self.quantity3_entry.pack(padding_options)
+        
+        self.quantity4_label.pack(padding_options)
+        self.quantity4_entry.pack(padding_options)
+        
+        self.quantity5_label.pack(padding_options)
+        self.quantity5_entry.pack(padding_options)
+        
+        self.rate1_label.pack(padding_options)
+        self.rate1_entry.pack(padding_options)
+        
+        self.rate2_label.pack(padding_options)
+        self.rate2_entry.pack(padding_options)
+        
+        self.rate3_label.pack(padding_options)
+        self.rate3_entry.pack(padding_options)
+        
+        self.rate4_label.pack(padding_options)
+        self.rate4_entry.pack(padding_options)
+        
+        self.rate5_label.pack(padding_options)
+        self.rate5_entry.pack(padding_options)
+        
+        self.amount1_label.pack(padding_options)
+        self.amount1_entry.pack(padding_options)
+        
+        self.amount2_label.pack(padding_options)
+        self.amount2_entry.pack(padding_options)
+        
+        self.amount3_label.pack(padding_options)
+        self.amount3_entry.pack(padding_options)
+        
+        self.amount4_label.pack(padding_options)
+        self.amount4_entry.pack(padding_options)
+        
+        self.amount5_label.pack(padding_options)
+        self.amount5_entry.pack(padding_options)
+        
+        self.subtotal_label.pack(padding_options)
+        self.subtotal_entry.pack(padding_options)
+        
+        self.igst_label.pack(padding_options)
+        self.igst_entry.pack(padding_options)
+        
+        self.sgst_label.pack(padding_options)
+        self.sgst_entry.pack(padding_options)
+        
+        self.cgst_label.pack(padding_options)
+        self.cgst_entry.pack(padding_options)
+        
+        self.total_label.pack(padding_options)
+        self.total_entry.pack(padding_options)
+        
+        self.totalInword_label.pack(padding_options)
+        self.totalInword_entry.pack(padding_options)
+        
+        self.create_Button.pack(padding_options)
+
 
     def create_invoice(self):
         pass
