@@ -109,86 +109,126 @@ class InvoiceAutomation:
         self.clientGST_label.pack(padding_options)
         self.clientGST_entry.pack(padding_options)
         
-        self.description1_label.pack(padding_options)
-        self.description1_entry.pack(padding_options)
+        # self.description1_label.pack(padding_options)
+        # self.description1_entry.pack(padding_options)
         
-        self.description2_label.pack(padding_options)
-        self.description2_entry.pack(padding_options)
+        # self.description2_label.pack(padding_options)
+        # self.description2_entry.pack(padding_options)
         
-        self.description3_label.pack(padding_options)
-        self.description3_entry.pack(padding_options)
+        # self.description3_label.pack(padding_options)
+        # self.description3_entry.pack(padding_options)
         
-        self.description4_label.pack(padding_options)
-        self.description4_entry.pack(padding_options)
+        # self.description4_label.pack(padding_options)
+        # self.description4_entry.pack(padding_options)
         
-        self.description5_label.pack(padding_options)
-        self.description5_entry.pack(padding_options)
+        # self.description5_label.pack(padding_options)
+        # self.description5_entry.pack(padding_options)
         
-        self.quantity1_label.pack(padding_options)
-        self.quantity1_entry.pack(padding_options)
+        # self.quantity1_label.pack(padding_options)
+        # self.quantity1_entry.pack(padding_options)
         
-        self.quantity2_label.pack(padding_options)
-        self.quantity2_entry.pack(padding_options)
+        # self.quantity2_label.pack(padding_options)
+        # self.quantity2_entry.pack(padding_options)
         
-        self.quantity3_label.pack(padding_options)
-        self.quantity3_entry.pack(padding_options)
+        # self.quantity3_label.pack(padding_options)
+        # self.quantity3_entry.pack(padding_options)
         
-        self.quantity4_label.pack(padding_options)
-        self.quantity4_entry.pack(padding_options)
+        # self.quantity4_label.pack(padding_options)
+        # self.quantity4_entry.pack(padding_options)
         
-        self.quantity5_label.pack(padding_options)
-        self.quantity5_entry.pack(padding_options)
+        # self.quantity5_label.pack(padding_options)
+        # self.quantity5_entry.pack(padding_options)
         
-        self.rate1_label.pack(padding_options)
-        self.rate1_entry.pack(padding_options)
+        # self.rate1_label.pack(padding_options)
+        # self.rate1_entry.pack(padding_options)
         
-        self.rate2_label.pack(padding_options)
-        self.rate2_entry.pack(padding_options)
+        # self.rate2_label.pack(padding_options)
+        # self.rate2_entry.pack(padding_options)
         
-        self.rate3_label.pack(padding_options)
-        self.rate3_entry.pack(padding_options)
+        # self.rate3_label.pack(padding_options)
+        # self.rate3_entry.pack(padding_options)
         
-        self.rate4_label.pack(padding_options)
-        self.rate4_entry.pack(padding_options)
+        # self.rate4_label.pack(padding_options)
+        # self.rate4_entry.pack(padding_options)
         
-        self.rate5_label.pack(padding_options)
-        self.rate5_entry.pack(padding_options)
+        # self.rate5_label.pack(padding_options)
+        # self.rate5_entry.pack(padding_options)
         
-        self.amount1_label.pack(padding_options)
-        self.amount1_entry.pack(padding_options)
+        # self.amount1_label.pack(padding_options)
+        # self.amount1_entry.pack(padding_options)
         
-        self.amount2_label.pack(padding_options)
-        self.amount2_entry.pack(padding_options)
+        # self.amount2_label.pack(padding_options)
+        # self.amount2_entry.pack(padding_options)
         
-        self.amount3_label.pack(padding_options)
-        self.amount3_entry.pack(padding_options)
+        # self.amount3_label.pack(padding_options)
+        # self.amount3_entry.pack(padding_options)
         
-        self.amount4_label.pack(padding_options)
-        self.amount4_entry.pack(padding_options)
+        # self.amount4_label.pack(padding_options)
+        # self.amount4_entry.pack(padding_options)
         
-        self.amount5_label.pack(padding_options)
-        self.amount5_entry.pack(padding_options)
+        # self.amount5_label.pack(padding_options)
+        # self.amount5_entry.pack(padding_options)
         
-        self.subtotal_label.pack(padding_options)
-        self.subtotal_entry.pack(padding_options)
+        # self.subtotal_label.pack(padding_options)
+        # self.subtotal_entry.pack(padding_options)
         
-        self.igst_label.pack(padding_options)
-        self.igst_entry.pack(padding_options)
+        # self.igst_label.pack(padding_options)
+        # self.igst_entry.pack(padding_options)
         
-        self.sgst_label.pack(padding_options)
-        self.sgst_entry.pack(padding_options)
+        # self.sgst_label.pack(padding_options)
+        # self.sgst_entry.pack(padding_options)
         
-        self.cgst_label.pack(padding_options)
-        self.cgst_entry.pack(padding_options)
+        # self.cgst_label.pack(padding_options)
+        # self.cgst_entry.pack(padding_options)
         
-        self.total_label.pack(padding_options)
-        self.total_entry.pack(padding_options)
+        # self.total_label.pack(padding_options)
+        # self.total_entry.pack(padding_options)
         
-        self.totalInword_label.pack(padding_options)
-        self.totalInword_entry.pack(padding_options)
+        # self.totalInword_label.pack(padding_options)
+        # self.totalInword_entry.pack(padding_options)
         
         self.create_Button.pack(padding_options)
 
+        self.root.mainloop()
 
+    @staticmethod
+    def replace_text(paragraph, old_text, new_text):
+        if old_text in paragraph.text:
+            paragraph.text = paragraph.text.replace(old_text,new_text)
+            
     def create_invoice(self):
-        pass
+        doc = docx.Document("template.docx")
+        try:
+            replacements = {
+                "[Date]": self.date_entry.get(),
+                "[Invoice]": self.invoice_entry.get(),
+
+                "[clientName]" : self.clientName_entry.get().title(),
+                "[clientAddress]" : self.clientName_entry.get(),
+                "[clientGST]" : self.clientName_entry.get(),
+            }
+        except ValueError:
+            messagebox.showerror(title='Error',message="Invalid amount or price")
+            return
+        
+        for paragraph in list(doc.paragraphs):
+            for old_text, new_text in replacements.items():
+                self.replace_text(paragraph,old_text,new_text)
+        
+        for table in doc.tables:
+            for row in table.rows:
+                for cell in row.cells:
+                    for paragraph in cell.paragraphs:
+                        for old_text, new_text in replacements.items():
+                            self.replace_text(paragraph,old_text,new_text)
+        save_path = filedialog.asksaveasfilename(defaultextension=".pdf",filetypes=[('PDF documents','*.pdf')])
+        doc.save('filled.docx')
+
+        subprocess.run(['libreoffice','--headless','--convert-to','pdf','filled.docx','--outdir','.'],check=True)
+        os.rename("filled.pdf",save_path)
+
+        messagebox.showinfo(title="success",message="Invoice created and saved successfully")
+
+
+if __name__ == "__main__":
+    InvoiceAutomation()
