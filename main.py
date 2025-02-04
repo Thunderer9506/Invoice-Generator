@@ -11,12 +11,12 @@ class InvoiceAutomation:
     def __init__(self):
         self.root = tk.Tk()
         self.root.title("Invoice Automation")
-        self.root.geometry("600x600")
+        self.root.geometry("700x600")
 
         self.upperFrame = ttk.Frame(self.root)
-        self.upperFrame.place(relx=0, rely=0, relwidth=1, relheight=0.2)
+        self.upperFrame.place(relx=0, rely=0, relwidth=1, relheight=0.3)
         self.upperFrame.columnconfigure((0,1,2,3), weight=1)
-        self.upperFrame.rowconfigure((0,1,2), weight=1)
+        self.upperFrame.rowconfigure((0,1,2,3), weight=1)
 
         self.midFrame = ttk.Frame(self.root)
         self.midFrame.place(relx=0, rely=0.3, relwidth=1, relheight=0.4)
@@ -30,11 +30,13 @@ class InvoiceAutomation:
 
         #Lables
         self.date_label = ttk.Label(self.upperFrame, text="Date")
-        self.invoice_label = ttk.Label(self.upperFrame, text="Invoice Number")
+        self.invoice_label = ttk.Label(self.upperFrame, text="Invoice No.")
 
         self.clientName_label = ttk.Label(self.upperFrame, text="Client Name")
         self.clientAddress_label = ttk.Label(self.upperFrame, text="Client Address")
         self.clientGST_label = ttk.Label(self.upperFrame, text="Client GST")
+        self.deliveryBy_label = ttk.Label(self.upperFrame, text="Delivery By")
+        self.deliveryAdd_label = ttk.Label(self.upperFrame, text="Delivery Address")
         
         self.description_label = tk.Label(self.midFrame, text="Description")
         self.quantity_label = tk.Label(self.midFrame, text="Quantity")
@@ -49,33 +51,36 @@ class InvoiceAutomation:
         self.date_entry = ttk.Entry(self.upperFrame,width=30)
         self.invoice_entry = ttk.Entry(self.upperFrame,width=30)
 
-        self.clientName_entry = ttk.Entry(self.upperFrame,width=30)
-        self.clientAddress_entry = ttk.Entry(self.upperFrame,width=30)
-        self.clientGST_entry = ttk.Entry(self.upperFrame,width=30)
+        self.clientName_entry = ttk.Entry(self.upperFrame, width=30)
+        self.clientAddress_entry = ttk.Entry(self.upperFrame, width=30)
+        self.clientGST_entry = ttk.Entry(self.upperFrame, width=30)
+        self.deliveryBy_entry = ttk.Entry(self.upperFrame, width=30)
+        self.deliveryAdd_entry = ttk.Entry(self.upperFrame, width=30)
 
-        self.description1_entry = ttk.Entry(self.midFrame,width=50)
-        self.description2_entry = ttk.Entry(self.midFrame,width=50)
-        self.description3_entry = ttk.Entry(self.midFrame,width=50)
-        self.description4_entry = ttk.Entry(self.midFrame,width=50)
-        self.description5_entry = ttk.Entry(self.midFrame,width=50)
+        self.description1_entry = ttk.Entry(self.midFrame, width=50)
+        self.description2_entry = ttk.Entry(self.midFrame, width=50)
+        self.description3_entry = ttk.Entry(self.midFrame, width=50)
+        self.description4_entry = ttk.Entry(self.midFrame, width=50)
+        self.description5_entry = ttk.Entry(self.midFrame, width=50)
 
-        self.quantity1_entry = ttk.Entry(self.midFrame,width=10)
-        self.quantity2_entry = ttk.Entry(self.midFrame,width=10)
-        self.quantity3_entry = ttk.Entry(self.midFrame,width=10)
-        self.quantity4_entry = ttk.Entry(self.midFrame,width=10)
-        self.quantity5_entry = ttk.Entry(self.midFrame,width=10)
+        self.quantity1_entry = ttk.Entry(self.midFrame, width=10)
+        self.quantity2_entry = ttk.Entry(self.midFrame, width=10)
+        self.quantity3_entry = ttk.Entry(self.midFrame, width=10)
+        self.quantity4_entry = ttk.Entry(self.midFrame, width=10)
+        self.quantity5_entry = ttk.Entry(self.midFrame, width=10)
 
-        self.rate1_entry = ttk.Entry(self.midFrame,width=10)
-        self.rate2_entry = ttk.Entry(self.midFrame,width=10)
-        self.rate3_entry = ttk.Entry(self.midFrame,width=10)
-        self.rate4_entry = ttk.Entry(self.midFrame,width=10)
-        self.rate5_entry = ttk.Entry(self.midFrame,width=10)
+        self.rate1_entry = ttk.Entry(self.midFrame, width=10)
+        self.rate2_entry = ttk.Entry(self.midFrame, width=10)
+        self.rate3_entry = ttk.Entry(self.midFrame, width=10)
+        self.rate4_entry = ttk.Entry(self.midFrame, width=10)
+        self.rate5_entry = ttk.Entry(self.midFrame, width=10)
 
-        self.amount1_entry = ttk.Entry(self.midFrame,width=20)
-        self.amount2_entry = ttk.Entry(self.midFrame,width=20)
-        self.amount3_entry = ttk.Entry(self.midFrame,width=20)
-        self.amount4_entry = ttk.Entry(self.midFrame,width=20)
-        self.amount5_entry = ttk.Entry(self.midFrame,width=20)
+        self.amount1_entry = ttk.Entry(self.midFrame, width=20)
+        self.amount2_entry = ttk.Entry(self.midFrame, width=20)
+        self.amount3_entry = ttk.Entry(self.midFrame, width=20)
+        self.amount4_entry = ttk.Entry(self.midFrame, width=20)
+        self.amount5_entry = ttk.Entry(self.midFrame, width=20)
+
 
         self.igst_var = tk.BooleanVar(value=False)
         self.sgst_var = tk.BooleanVar(value=False)
@@ -107,6 +112,12 @@ class InvoiceAutomation:
 
         self.clientGST_label.grid(row=2, column=2, padx=5, pady=5, sticky="w")
         self.clientGST_entry.grid(row=2, column=3, padx=5, pady=5, sticky="ew")
+
+        self.deliveryBy_label.grid(row=2, column=0, padx=5, pady=5, sticky="w")
+        self.deliveryBy_entry.grid(row=2, column=1, padx=5, pady=5, sticky="ew")
+
+        self.deliveryAdd_label.grid(row=3, column=2, padx=5, pady=5, sticky="w")
+        self.deliveryAdd_entry.grid(row=3, column=3, padx=5, pady=5, sticky="ew")
 
         self.description_label.grid(row=0, column=0, padx=5, pady=5, sticky="w")
         self.quantity_label.grid(row=0, column=1, padx=5, pady=5, sticky="w")
@@ -199,6 +210,8 @@ class InvoiceAutomation:
                 "[clientName]": self.clientName_entry.get().title(),
                 "[clientAddress]": self.clientAddress_entry.get(),
                 "[clientGST]": self.clientGST_entry.get(),
+                "[dispatchBy]": self.deliveryBy_entry.get(),
+                "[deliveryAdd]": self.deliveryAdd_entry.get(),
 
                 "[Description1]": self.description1_entry.get() if self.description1_entry.get() else "",
                 "[Description2]": self.description2_entry.get() if self.description2_entry.get() else "",
