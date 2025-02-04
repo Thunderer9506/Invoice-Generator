@@ -1,4 +1,3 @@
-import os
 import subprocess
 import shutil
 import tkinter as tk
@@ -178,9 +177,9 @@ class InvoiceAutomation:
         rounded_total = round(total)
         total_words = num2words.num2words(rounded_total).title()
         if total == rounded_total:
-            return f"Total (Round Off):\n {total_words} Only"
+            return f"Total (Round Off):\n{total_words} Only"
         else:
-            return f"Total:\n {total_words} Only"
+            return f"Total:\n {total_words}"
 
     def create_invoice(self):
         doc = docx.Document("template.docx")
@@ -242,14 +241,17 @@ class InvoiceAutomation:
                     for paragraph in cell.paragraphs:
                         for old_text, new_text in replacements.items():
                             self.replace_text(paragraph,old_text,new_text)
-        save_path = filedialog.asksaveasfilename(defaultextension=".pdf",filetypes=[('PDF documents','*.pdf')])
-        doc.save('filled.docx')
+        save_path = filedialog.asksaveasfilename(defaultextension=".pdf", filetypes=[('PDF documents', '*.pdf')])
+        if not save_path:
+            messagebox.showerror(title="Error", message="No file name provided")
+            return
 
+        doc.save('filled.docx')
 
         try:
             subprocess.run(args=[r'C:\Libre Office\program\soffice.exe', '--headless', '--convert-to', 'pdf', 'filled.docx', '--outdir', '.'], check=True)
-            shutil.move(src=f"Bill_{self.invoice_entry.get()}.pdf", dst=save_path)
-            messagebox.showinfo(title="success", message="Invoice created and saved successfully")
+            shutil.move("filled.pdf", save_path)
+            messagebox.showinfo(title="success", message=f"Invoice created and saved successfully as {save_path}")
         except subprocess.CalledProcessError as e:
             messagebox.showerror(title="Error", message=f"Failed to convert DOCX to PDF: {e}")
         except PermissionError as e:
